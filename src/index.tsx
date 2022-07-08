@@ -5,10 +5,11 @@
  **/
 import React, { createContext, useReducer } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import UploadDemoTest from './uploadDemo/UploadDemoTest';
+import UploadDemoTest from './views/uploadDemo/UploadDemoTest';
 import Home from '@views/home/Home';
 
-const platform = '/';
+export const platform = '/';
+export const serverPath = '/api/'
 export const menuList = [
   { path: platform, name: '上传Demo', component: UploadDemoTest },
 ];

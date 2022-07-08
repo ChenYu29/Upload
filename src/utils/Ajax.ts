@@ -5,7 +5,7 @@
 import { message, Modal } from 'antd';
 import Axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import qs from 'qs';
-import { platform, serverPath } from '@utils/CommonVars';
+import { platform, serverPath } from '../index';
 
 interface AxiosRequestConfigMore extends AxiosRequestConfig {
   // 判断是否是文件上传

@@ -24,15 +24,6 @@ export enum CommonSpace {
   xs = 5
 }
 /**
- * 服务器部署前缀路径
- * **/
-const serverConfigs = require('./../../scripts/config.js');
-export const { platform } = serverConfigs();
-/**
- * API 接口路径
- **/
-export const { serverPath } = serverConfigs();
-/**
  * 图标库地址，iconfonts 库
  * **/
 export const iconUrl: string = iconfont;

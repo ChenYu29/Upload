@@ -3,7 +3,7 @@
  *@author cy
  *@date 2022-05-18 13:52
  **/
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Button, Col, message, Row, Typography, Upload } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
@@ -29,13 +29,24 @@ interface IProps {
   listType?: 'text' | 'picture' | 'length';
   accept?: any; // 文件格式
   children?: React.ReactNode;
+  directory?: boolean; // 是否选择文件夹
 }
 const MyUpload = (props: IProps) => {
   const {
     multiple = false, maxCount = 1, onRemove, onChange, showFileList = [], fileSpan = 24, uploadItemClass,
-    listType = 'text', accept, children
+    listType = 'text', accept = [], children, directory
   } = props;
   const inputRef: any = useRef();
+  useEffect(() => {
+    if (inputRef.current) {
+      // 使用ref的方式设置input的webkitdirectory属性才会生效
+      if (directory) { // 选择文件夹
+        inputRef.current.setAttribute('webkitdirectory', 'true');
+      } else { // 选择单个文件
+        inputRef.current.removeAttribute('webkitdirectory');
+      }
+    }
+  }, [directory]);
   const fileBeforeShow = (file: any) => {
     let index = showFileList.findIndex((item: any) => {
       return item.name === file.name;
@@ -98,7 +109,7 @@ const MyUpload = (props: IProps) => {
             type="file" style={{ display: 'none' }}
             id="inputFile" multiple={multiple}
             onChange={fileChange} ref={inputRef}
-            accept={accept}
+            accept={accept.join(',')}
           />
         </div>
         {listType === 'picture' && (

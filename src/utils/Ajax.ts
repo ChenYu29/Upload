@@ -109,5 +109,31 @@ const get = (url: string, params: any, config: AxiosRequestConfig = {}, thenCall
     }
   });
 };
+/**
+ * Put 上传文件
+ **/
+const put = (url: string, data: any, config: AxiosRequestConfig, thenCallBack: any) => {
+  return Axios.put(url, data, config).then((response: any) => {
+    if (response.status === 200) {
+      let responseData = response.data;
+      if (responseData.hasOwnProperty('flag')) {
+        if (responseData.flag === 1) {
+          message.error(responseData.msg);
+          thenCallBack(responseData);
+        } else {
+          thenCallBack(responseData);
+        }
+      } else {
+        thenCallBack(responseData);
+      }
+    } else {
+      thenCallBack(response);
+    }
+  }).catch((e) => {
+    thenCallBack({
+      status: 500
+    });
+  });
+};
 
-export { post, get };
+export { post, get, put };

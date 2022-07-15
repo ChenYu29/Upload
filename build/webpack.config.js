@@ -8,9 +8,12 @@ const jsRules = require('./rules/jsRules');
 const styleRules = require('./rules/styleRules');
 const fileRules = require('./rules/fileRules');
 const optimization = require('./optimization');
+const webpack = require('webpack');
 // 映射 tsconfig 路径
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 const { resolve } = require('./utils');
+// global.process = require('process');
 
 const platform = '/';
 module.exports = {
@@ -33,7 +36,18 @@ module.exports = {
   module: {
     rules: [...styleRules, ...fileRules, ...jsRules],
   },
-  plugins: [...developmentPlugins],
+  externals: {
+    fs: require('fs')
+  },
+  plugins: [
+      ...developmentPlugins,
+      new NodePolyfillPlugin()
+    // new webpack.DefinePlugin({ // webpack自带该插件，无需单独安装
+    //   'process.env' : {
+    //     NODE_ENV: process.env.NODE_ENV // 将属性转化为全局变量，让代码中可以正常访问
+    //   }
+    // })
+  ],
   optimization,
   devServer: {
     port: 3004,

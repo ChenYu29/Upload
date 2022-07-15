@@ -1,4 +1,5 @@
 module.exports = {
+  // nodeEnv: false,
   runtimeChunk: {
     name: 'manifest'
   },

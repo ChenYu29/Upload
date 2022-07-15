@@ -7,11 +7,13 @@ import React, { createContext, useReducer } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import UploadDemoTest from './views/uploadDemo/UploadDemoTest';
 import Home from '@views/home/Home';
+import MinioUploadDemo from '@views/minioUpload/MinioUploadDemo';
 
 export const platform = '/';
 export const serverPath = '/api/'
 export const menuList = [
-  { path: platform, name: '上传Demo', component: UploadDemoTest },
+  { path: platform, name: '普通上传Demo', component: UploadDemoTest },
+  { path: platform + 'minio', name: '上传到Minio', component: MinioUploadDemo },
 ];
 const App = () => {
   return (

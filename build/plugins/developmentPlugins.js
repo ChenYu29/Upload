@@ -11,7 +11,7 @@ module.exports = [
   new HtmlWebpackPlugin({
     template: 'build/template/index.html',
     hash: true,
-    favicon: resolve('src/static/images/logo.jpg')
+    favicon: resolve('src/static/images/logo.jpg'),
   }),
   // 优化moment打包后体积
   new AntdDayjsWebpackPlugin(),

@@ -8,12 +8,14 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import UploadDemoTest from './views/uploadDemo/UploadDemoTest';
 import Home from '@views/home/Home';
 import MinioUploadDemo from '@views/minioUpload/MinioUploadDemo';
+import ResizeTable from '@views/table/ResizeTable';
 
 export const platform = '/';
 export const serverPath = '/api/'
 export const menuList = [
   { path: platform, name: '普通上传Demo', component: UploadDemoTest },
   { path: platform + 'minio', name: '上传到Minio', component: MinioUploadDemo },
+  { path: platform + 'resizeTable', name: '可伸缩列表格', component: ResizeTable },
 ];
 const App = () => {
   return (

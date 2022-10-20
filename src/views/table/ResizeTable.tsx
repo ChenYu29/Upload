@@ -24,14 +24,30 @@ const ResizeTable = () => {
   //     onResize: handleResize(index),
   //   }),
   // }));
-  const [headerWidth, setHeaderWidth] = useState<any>({ date: 200, amount: 200, type: 150, note: 100 });
+  const [headerWidth, setHeaderWidth] = useState<any>({ date: 200, amount: 200, type: 150, note: 100, age: 50, sex: 50 });
   const { tableParam, handleResize } = useTableHook({ headerResizable: true, resizeByKey: true, headerWidth, setHeaderWidth });
   const columns2 = [
-    { title: 'Date', dataIndex: 'date', width: headerWidth.date },
+    { title: 'Date', children: [
+        { title: '人', dataIndex: 'age', width: headerWidth.age },
+        { title: 'sex', dataIndex: 'sex', width: headerWidth.sex },
+      ] },
     { title: 'Amount', dataIndex: 'amount', width: headerWidth.amount, sorter: (a, b) => a.amount - b.amount },
     { title: 'Type', dataIndex: 'type', width: headerWidth.type },
     { title: 'Note', dataIndex: 'note', width: headerWidth.note }
   ];
+  const renderColumns = (arr: Array<any>) => {
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = {
+        ...arr[i],
+        onHeaderCell: column => {
+          return {
+            width: (column as ColumnType<any>).width,
+            onResize: handleResize(column.dataIndex),
+          }
+        }
+      }
+    }
+  };
   const mergeColumns: ColumnsType<any> = columns2.map((col) => ({
     ...col,
     onHeaderCell: column => {
@@ -47,21 +63,21 @@ const ResizeTable = () => {
       date: '2018-02-11',
       amount: 120,
       type: 'income',
-      note: 'transfer',
+      note: 'transfer', age: 1, sex: 2
     },
     {
       key: 1,
       date: '2018-03-11',
       amount: 243,
       type: 'income',
-      note: 'transfer',
+      note: 'transfer', age: 1, sex: 2
     },
     {
       key: 2,
       date: '2018-04-11',
       amount: 98,
       type: 'income',
-      note: 'transfer',
+      note: 'transfer', age: 1, sex: 2
     },
   ]
   return (

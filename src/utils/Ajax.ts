@@ -9,7 +9,7 @@ import { platform, serverPath } from '../index';
 
 interface AxiosRequestConfigMore extends AxiosRequestConfig {
   // 判断是否是文件上传
-  dataType?: 'form' | 'formWithFile'
+  dataType?: 'form' | 'formWithFile' | 'json'
 }
 
 /**

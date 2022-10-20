@@ -127,7 +127,7 @@ const MyUpload = (props: IProps) => {
             {showFileList.map((item: any) => (
               <div key={item.uid} className="my-upload-item-picture-div">
                 <div className={`my-upload-list-picture ${item.status === EFileStatus.success && 'my-upload-item-done'}
-              ${item.status === EFileStatus.error && 'my-upload-item-error'}`}>
+              ${item.status === EFileStatus.error && 'my-upload-item-error'} ${item.status === EFileStatus.uploading && 'my-upload-item-uploading'}`}>
                   <div className="my-upload-item-picture">
                     <img src={item.thumbnailPath} width="100%" height="auto" style={{ maxHeight: '100%', objectFit: 'contain' }} />
                     <Button
@@ -147,7 +147,8 @@ const MyUpload = (props: IProps) => {
           <Row wrap={true} className="my-upload">
             {showFileList.map((item: any) => (
               <Col span={fileSpan} key={item.uid} className="my-upload-list-item">
-                <Text className={`my-upload-item-span ${item.status === EFileStatus.success && 'my-upload-item-done'} ${item.status === EFileStatus.error && 'my-upload-item-error'}`}>{item.name}</Text>
+                <Text className={`my-upload-item-span ${item.status === EFileStatus.success && 'my-upload-item-done'} 
+                ${item.status === EFileStatus.error && 'my-upload-item-error'}  ${item.status === EFileStatus.uploading && 'my-upload-item-uploading'}`}>{item.name}</Text>
                 <Button
                   className="my-upload-item-btn"
                   type="link"

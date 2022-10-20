@@ -184,3 +184,40 @@
   border-radius: 50%;
   content: '×';
 }
+
+//  文字列表的上传中
+.my-upload-item-span.my-upload-item-uploading:before {
+  content: '';
+  font-weight: 600;
+  color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  left: 2px;
+  position: absolute;
+  padding-left: 5px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #555;
+  display: inline-block;
+  animation: spin 2s linear infinite;
+}
+//  图片展示的 上传中
+.my-upload-list-picture.my-upload-item-uploading:before {
+  content: '';
+  font-weight: 600;
+  color: #fff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  left: 2px;
+  position: absolute;
+  padding-left: 5px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #555;
+  display: inline-block;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
